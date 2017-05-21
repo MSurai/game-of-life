@@ -1,3 +1,7 @@
+import os
+import random
+
+
 def main():
     board = initialize_board(5, 5)
 
@@ -5,6 +9,15 @@ def main():
 def initialize_board(width, height):
     board = [[False for i in range(width)] for j in range(height)]
     return board
+
+
+def fill_board_randomly(board):
+    width = len(board[0])
+    height = len(board)
+
+    for y in range(height):
+        for x in range(width):
+            board[y][x] = bool(random.randint(0, 1))
 
 
 def count_neighbors(x, y, board):
@@ -19,6 +32,16 @@ def count_neighbors(x, y, board):
 
     return counter
 
+
+def print_board(board):
+    for row in board:
+        for item in row:
+            print('o ' if item == True else '. ', end='')
+        print()
+
+
+def clear_screen():
+    os.system('clear')
 
 if __name__ == '__main__':
     main()
